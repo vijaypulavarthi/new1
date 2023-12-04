@@ -94,36 +94,6 @@ st.subheader('Top 15 Cases - Nevada & Florida:')
 state_data = df.loc[(df.STATE_NAME.isin(['Nevada', 'Florida'])) & (df.OFFENSE_SUBCAT_NAME == 'Commercial Sex Acts'), ['DATA_YEAR', 'STATE_NAME', 'ACTUAL_COUNT']].sort_values(by='ACTUAL_COUNT', ascending=False).head(15)
 st.write(state_data)
 
-# ... (Continue displaying other analyses similarly)
-# Sort reported cases and plot
-df_sorted = df.sort_values('ACTUAL_COUNT', ascending=False)
-plt.figure(figsize=(20, 8))
-plt.style.use("fivethirtyeight")
-plt.xticks(rotation=90)
-plt.title("Reported Cases by State")
-plt.bar(df_sorted["STATE_NAME"], df_sorted["ACTUAL_COUNT"])
-st.pyplot()
-
-
-
-# Plotting aggregated reported cases by year
-st.subheader('Aggregated Reported Cases by Year')
-#plt.plot(df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.index, df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.values)
-data_year = df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.index.tolist()
-actual_count = df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.values.tolist()
-
-plt.plot(data_year, actual_count)
-plt.title("Aggregated Reported Cases by Year")
-st.pyplot()
-
-
-
-
-# Plotting a line plot of the number of solved cases each year
-st.subheader('Number of Solved Cases Each Year')
-sns.lineplot(x="DATA_YEAR", y="CLEARED_COUNT", data=df)
-st.pyplot()
-
 # Sort reported cases and plot
 df_sorted = df.sort_values('ACTUAL_COUNT', ascending=False)
 fig1, ax1 = plt.subplots(figsize=(20, 8))
@@ -147,29 +117,24 @@ sns.lineplot(x="DATA_YEAR", y="CLEARED_COUNT", data=df, ax=ax3)
 st.pyplot(fig3)
 
 
-
 # Plot reported cases by region
-plt.figure(figsize=(8, 6))
-sns.catplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df)
+fig4, ax4 = plt.subplots(figsize=(8, 6))
+sns.catplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df, ax=ax4)
 max_REGION_NAME = df['REGION_NAME'].value_counts().index[0]
 st.write('Region with highest occurrence:', max_REGION_NAME)
-st.pyplot()
-
-
+st.pyplot(fig4)
 
 # Plot reported cases by state
-plt.figure(figsize=(8, 6))
-sns.catplot(x="ACTUAL_COUNT", y="STATE_NAME", data=df, height=10).set(title="Reported Cases of Trafficking by State")
+fig5, ax5 = plt.subplots(figsize=(8, 6))
+sns.catplot(x="ACTUAL_COUNT", y="STATE_NAME", data=df, height=10, ax=ax5).set(title="Reported Cases of Trafficking by State")
 st.write("Reports of trafficking for each state")
-st.pyplot()
-
-
+st.pyplot(fig5)
 
 # Breakdown of reported offenses involving sex acts or not
-plt.figure(figsize=(10, 10))
-sns.stripplot(x="OFFENSE_SUBCAT_NAME", y="ACTUAL_COUNT", data=df, hue="OFFENSE_SUBCAT_NAME", linewidth=2, size=10)
+fig6, ax6 = plt.subplots(figsize=(10, 10))
+sns.stripplot(x="OFFENSE_SUBCAT_NAME", y="ACTUAL_COUNT", data=df, hue="OFFENSE_SUBCAT_NAME", linewidth=2, size=10, ax=ax6)
 st.write("Breakdown of Reported Offenses involving Sex Acts or Not")
-st.pyplot()
+st.pyplot(fig6)
 
 # Number of times each offense subcategory is listed and overall percentage
 offense_counts = df["OFFENSE_SUBCAT_NAME"].value_counts()
@@ -180,9 +145,12 @@ st.write("Overall percentage of total for each offense subcategory:")
 st.write(offense_percentage)
 
 # Breakdown of each crime reported by year
-sns.lmplot(x="DATA_YEAR", y="ACTUAL_COUNT", hue="OFFENSE_SUBCAT_NAME", data=df)
+fig7, ax7 = plt.subplots()
+sns.lmplot(x="DATA_YEAR", y="ACTUAL_COUNT", hue="OFFENSE_SUBCAT_NAME", data=df, ax=ax7)
 st.write("Breakdown of each crime reported by year")
-st.pyplot()
+st.pyplot(fig7)
+
+
 
 # Ranking of top 30 states with overall highest occurrences for all of the past 8 years
 top_states = df[['STATE_NAME', 'ACTUAL_COUNT']].groupby('STATE_NAME').sum().sort_values(by=['ACTUAL_COUNT'], ascending=False).head(30)
