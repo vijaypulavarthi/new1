@@ -11,7 +11,7 @@ def load_data():
 
 
 # Title and description
-st.title('Analysis of FBI D ataset')
+st.title('Analysis of FBI Dataset')
 st.write('This app explores the FBI dataset.')
 
 # Load data
@@ -60,12 +60,12 @@ st.write(top_unsolved_cases)
 
 # Finding percentages of reporting agencies rounded to three decimal places
 agency_type_percentages = round(df['AGENCY_TYPE_NAME'].value_counts(normalize=True) * 100, 3)
-st.write('Percentages of Reporting Agencies:')
+st.subheader('Percentages of Reporting Agencies:')
 st.write(pd.DataFrame(agency_type_percentages))
 
 # Count of data entries per year
 yearly_counts = df.DATA_YEAR.value_counts(ascending=True)
-st.write('Participation Trends Over Years:')
+st.subheader('Participation Trends Over Years:')
 st.write(yearly_counts)
 
 # Analysis description
@@ -73,13 +73,13 @@ st.write("There has been increasing participation since the inception of data co
 
 st.write('Next I would like to look at just tribal agencies who filed criminal trafficking reports.') 
 tribal_agencies = df.query("AGENCY_TYPE_NAME.str.contains('Tribal')")
-st.write('Tribal Agencies Reporting Criminal Trafficking:')
+st.subheader('Tribal Agencies Reporting Criminal Trafficking:')
 st.write(tribal_agencies)
 
 # Analyzing Florida cases
 st.write('Note that county name is not specified on tribal lands, nor in federal cases. Next Ill look at Florida cases.')
 florida_cases = df.query("STATE_ABBR.str.contains('FL')")
-st.write('Florida Cases:')
+st.subheader('Florida Cases:')
 st.write(florida_cases)
 
 # Seminole County, Florida information
