@@ -124,6 +124,28 @@ st.subheader('Number of Solved Cases Each Year')
 sns.lineplot(x="DATA_YEAR", y="CLEARED_COUNT", data=df)
 st.pyplot()
 
+# Sort reported cases and plot
+df_sorted = df.sort_values('ACTUAL_COUNT', ascending=False)
+fig1, ax1 = plt.subplots(figsize=(20, 8))
+plt.style.use("fivethirtyeight")
+plt.xticks(rotation=90)
+plt.title("Reported Cases by State")
+ax1.bar(df_sorted["STATE_NAME"], df_sorted["ACTUAL_COUNT"])
+st.pyplot(fig1)
+
+# Plotting aggregated reported cases by year
+st.subheader('Aggregated Reported Cases by Year')
+fig2, ax2 = plt.subplots()
+ax2.plot(data_year, actual_count)
+plt.title("Aggregated Reported Cases by Year")
+st.pyplot(fig2)
+
+# Plotting a line plot of the number of solved cases each year
+st.subheader('Number of Solved Cases Each Year')
+fig3, ax3 = plt.subplots()
+sns.lineplot(x="DATA_YEAR", y="CLEARED_COUNT", data=df, ax=ax3)
+st.pyplot(fig3)
+
 
 
 # Plot reported cases by region
