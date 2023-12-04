@@ -51,18 +51,25 @@ Involuntary Servitude –Human trafficking involuntary servitude is defined as t
 ##  Algorithm Description:
 
 Data Loading and Display: Load the dataset using Pandas, display the initial rows, summary statistics, and information about numeric and categorical columns.
+
 Percentage Analysis: Calculate and display the percentage of occurrences for each unique value in each column and the percentage of null values in each column.
+
 Top Unsolved Cases: Determine and display the top 10 percentages of unsolved cases.
+
 Specific Analysis:
 Analyze reporting agency percentages.
 Count data entries per year to observe trends.
 Analyze specific cases related to tribal agencies, Florida, Seminole County, juvenile cases cleared, and cases from Nevada and Florida.
+
 Visualization:
 Generate various visualizations using Seaborn and Matplotlib to depict reported cases by state, year, offense subcategory, etc.
+
 Statistics and Rankings:
 Calculate statistics like the breakdown of reported offenses, ranking top states based on occurrences, and displaying the maximum occurrences by county, state, population group, and region.
 
 ## Tools Used:
 Streamlit: Used for building the web application, creating an interactive interface, and displaying data.
+
 Pandas: For data manipulation, loading, cleaning, and analyzing the dataset.
+
 Seaborn & Matplotlib: Used for data visualization, creating various plots (bar, line, scatter) to represent trends, distributions, and comparisons visually.
