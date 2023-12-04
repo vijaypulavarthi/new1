@@ -148,10 +148,11 @@ st.write("Overall percentage of total for each offense subcategory:")
 st.write(offense_percentage)
 
 # Breakdown of each crime reported by year
-fig7, ax7 = plt.subplots()
-sns.lmplot(x="DATA_YEAR", y="ACTUAL_COUNT", hue="OFFENSE_SUBCAT_NAME", data=df, ax=ax7)
-st.write("Breakdown of each crime reported by year")
+st.subheader('Breakdown of Each Crime Reported by Year')
+
+fig7 = sns.lmplot(x="DATA_YEAR", y="ACTUAL_COUNT", hue="OFFENSE_SUBCAT_NAME", data=df, height=6, aspect=2)
 st.pyplot(fig7)
+
 
 
 
