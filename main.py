@@ -108,9 +108,16 @@ st.pyplot()
 
 # Plotting aggregated reported cases by year
 st.subheader('Aggregated Reported Cases by Year')
-plt.plot(df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.index, df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.values)
+#plt.plot(df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.index, df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.values)
+data_year = df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.index.tolist()
+actual_count = df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.values.tolist()
+
+plt.plot(data_year, actual_count)
 plt.title("Aggregated Reported Cases by Year")
 st.pyplot()
+
+
+
 
 # Plotting a line plot of the number of solved cases each year
 st.subheader('Number of Solved Cases Each Year')
