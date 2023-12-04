@@ -128,11 +128,13 @@ st.pyplot()
 
 # Plot reported cases by region
 st.subheader('Reported Cases by Region')
+
 fig, ax = plt.subplots(figsize=(8, 6))
-sns.barplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df, ax=ax)
+sns.catplot(x="REGION_NAME", y="ACTUAL_COUNT", data=df, kind="bar", ax=ax)
 max_REGION_NAME = df['REGION_NAME'].value_counts().index[0]
 st.write('Region with highest occurrence:', max_REGION_NAME)
 st.pyplot(fig)
+
 
 
 
