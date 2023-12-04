@@ -126,25 +126,12 @@ max_REGION_NAME = df['REGION_NAME'].value_counts().index[0]
 st.write('Region with highest occurrence:', max_REGION_NAME)
 st.pyplot()
 
-# Plot reported cases by region
-st.subheader('Reported Cases by Region')
-
-fig, ax = plt.subplots(figsize=(8, 6))
-sns.catplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df, ax=ax)
-max_REGION_NAME = df['REGION_NAME'].value_counts().index[0]
-st.write('Region with highest occurrence:', max_REGION_NAME)
-st.pyplot(fig)
-
-
-
-
-
 
 # Plot reported cases by state
-fig5, ax5 = plt.subplots(figsize=(8, 6))
-sns.catplot(x="ACTUAL_COUNT", y="STATE_NAME", data=df, height=10, ax=ax5).set(title="Reported Cases of Trafficking by State")
+plt.figure(figsize=(8, 6))
+sns.catplot(x="ACTUAL_COUNT", y="STATE_NAME", data=df, height=10).set(title="Reported Cases of Trafficking by State")
 st.write("Reports of trafficking for each state")
-st.pyplot(fig5)
+st.pyplot()
 
 # Breakdown of reported offenses involving sex acts or not
 fig6, ax6 = plt.subplots(figsize=(10, 10))
