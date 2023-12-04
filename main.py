@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from IPython.display import display, HTML
+
 
 # Load the dataset
 @st.cache_data()  # Cache data for better performance
