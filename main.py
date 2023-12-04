@@ -103,12 +103,15 @@ plt.title("Reported Cases by State")
 ax1.bar(df_sorted["STATE_NAME"], df_sorted["ACTUAL_COUNT"])
 st.pyplot(fig1)
 
+
+
 # Plotting aggregated reported cases by year
 st.subheader('Aggregated Reported Cases by Year')
-fig2, ax2 = plt.subplots()
-ax2.plot(data_year, actual_count)
-plt.title("Aggregated Reported Cases by Year")
-st.pyplot(fig2)
+fig, ax = plt.subplots()
+ax.plot(df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.index, df.groupby('DATA_YEAR').sum().ACTUAL_COUNT.values)
+ax.set_title("Aggregated Reported Cases by Year")
+st.pyplot(fig)
+
 
 # Plotting a line plot of the number of solved cases each year
 st.subheader('Number of Solved Cases Each Year')
