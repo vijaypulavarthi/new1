@@ -119,13 +119,24 @@ fig3, ax3 = plt.subplots()
 sns.lineplot(x="DATA_YEAR", y="CLEARED_COUNT", data=df, ax=ax3)
 st.pyplot(fig3)
 
-
 # Plot reported cases by region
-fig4, ax4 = plt.subplots(figsize=(8, 6))
-sns.catplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df, ax=ax4)
+plt.figure(figsize=(8, 6))
+sns.catplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df)
 max_REGION_NAME = df['REGION_NAME'].value_counts().index[0]
 st.write('Region with highest occurrence:', max_REGION_NAME)
-st.pyplot(fig4)
+st.pyplot()
+
+# Plot reported cases by region
+st.subheader('Reported Cases by Region')
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.barplot(x="ACTUAL_COUNT", y="REGION_NAME", data=df, ax=ax)
+max_REGION_NAME = df['REGION_NAME'].value_counts().index[0]
+st.write('Region with highest occurrence:', max_REGION_NAME)
+st.pyplot(fig)
+
+
+
+
 
 # Plot reported cases by state
 fig5, ax5 = plt.subplots(figsize=(8, 6))
